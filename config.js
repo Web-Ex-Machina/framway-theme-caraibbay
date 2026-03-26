@@ -13,7 +13,7 @@ module.exports = {
 	},
 	'input': {
 		'background': 'scale-color(primary,$lightness:80%)',
-		'font-color': 'colors(white)',
+		'font-color': 'colors(blacklighter)',
 		'border-color': 'colors(none)',
 		'placeholder-font-color': 'colors(greylighter)',
 	},
@@ -24,5 +24,7 @@ module.exports = {
 	},
 	'footer': {
 		'background': 'primary'
-	}
+	},
+	'input-as-btn': false,
+	'button-as-btn': false,
 };
