@@ -42,6 +42,12 @@ body{font-family: 'muli',sans-serif;}
 	}
 }
 
+
+.bg-theme{background-color: var(--theme); color: #fff;}
+.ft-theme{color: var(--theme);}
+
+
+
 // HOME
 body.home{
 	#wrapper{display: grid;grid-template-columns: 100%;}
