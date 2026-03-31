@@ -365,7 +365,11 @@ h1,.h1{text-transform: none; font-size: 3em; line-height: 1; margin-bottom: 1em;
 
 .sliderFW__subitem.empty.img-container{background: Hsla(from var(--primary) h s l / 0.05);}
 
-// MISCS                    
+// MISCS      
+#TA-widget{
+	position: absolute; right: 1em; bottom: 1em; z-index: 1;
+}
+              
 .grid--home-1{
 	position: relative;
 	display: grid;
