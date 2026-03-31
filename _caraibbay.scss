@@ -60,13 +60,14 @@ body.home{
 	#container{grid-column: 1; grid-row: 1;}
 	.mod_article{
 		--mod_article-padding-y: 8.5em;
-		min-height: calc(100vh - var(--booking-bar-height,0px));
+		// min-height: calc(100vh - var(--booking-bar-height,0px));
 		display: grid;
 		grid-template-columns: 100%;
 		align-content: center;
 		z-index: 1;
 		&:not([class*=m-bottom]){margin-bottom: 0;}
 		&:nth-child(2n-1){background: change-color($primary,$lightness:95%);}
+		&:not(.slide--fit){min-height: calc(100vh - var(--booking-bar-height,0px));}
 	}
 	.headerFW{
 		background: transparent;
@@ -130,10 +131,77 @@ body.home{
 .headerFW__lang{grid-column: 1; justify-content: start}
 
 .headerFW__nav__panel{
+	position: fixed;
+	top: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 1;
+	padding: var(--viewport-padding-top,10vw) 10vw 0;
+	font-variant: all-small-caps;
 	&.active{
 		&::backdrop{background: #000;}
 	}
+	>.container{display: grid; grid-template-columns: 1fr 1fr;
+		@include media-max(sm){
+			grid-template-columns: 2fr 1fr;
+		}
+		@include media-max(xs){
+			grid-template-columns: 1fr;
+		}
+	}
+	#galleryMenu{display: block;
+		@include media-max(xs){display: none;}
+	}
 }
+.headerFW__nav__toggler{
+	z-index: 2;
+	color: var(--primary);
+	transition: color 0.4s;
+	&.active{color: var(--secondary);}
+	body.home &{color: hsl(from var(--primary) h s calc(l + 10));
+		&.active{color: var(--secondary);}
+	}
+}
+.headerFW__nav__panel ul.panel__item{
+	// padding: 10vw 10vw 0;
+	@include container();
+	gap: 0.25em;
+	li{
+		&.menu--septop{
+			border-top: 2px solid hsla(from var(--primary) h s l / 20%);
+	    margin-top: 1.5em;
+	    padding-top: 0.5em;
+		}
+		&.menu--btn{
+			>*:not(ul):not(.toggler){@include btn(); 
+				flex-grow: 0; 
+				color: var(--btn-font-color) !important;
+		    padding: 0.5em 0.65em 0.6em !important;
+		    line-height: 1;
+		    min-width: 0;
+		    margin-block: 0.75em;
+		  }
+		}
+	}
+	li:nth-of-type(2n){background: none; }
+	li>:not(ul):not(.toggler){transition: all 0.2s; padding:0; }
+}
+.headerFW__nav__panel ul.panel__item li:hover>:not(ul):not(.toggler){
+	margin-left: 1em;
+}
+
+#galleryMenu{
+	display: none;
+	max-height: 80vh;
+	overflow: hidden;
+	pointer-events: none;
+	--griditem-minwidth:80px;
+	&:after{
+		content:""; display: block; position: absolute; inset:0; z-index: 1;
+		background: linear-gradient(0deg, white 5%, transparent 25%);
+	}
+}
+
 
 // FOOTER
 #footer{padding: 0;
