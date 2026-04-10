@@ -790,3 +790,23 @@ body{
 	}
 	.close{font-size: 1.5em; color: #fff;}
 }
+
+
+.circlifultext{
+	position: absolute; inset: 0; aspect-ratio: 1; overflow: visible;
+	// textPath{ alignment-baseline: hanging;}
+	// tspan{alignment-baseline: inherit;}
+}
+
+a.link--specialsnowflake{
+	color: hsl(from var(--primary) h s calc(l - 25));
+	text-decoration: none !important;
+	svg{transition: all 0.25s;}
+	&:hover{
+		color: hsl(from var(--primary) h s calc(l - 25));
+		svg{ 
+			color: hsl(from currentColor h s calc(l + 70));
+    	scale: 1.15;
+    }
+	}
+}

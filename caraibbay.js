@@ -10,36 +10,34 @@ if (window.scrollY > header.clientHeight){
 }
 header.closest('#header').classList.add('ready')
 
-// let oldHeaderOnCreate = app.HeaderFW.prototype.onCreate;
-// app.HeaderFW.prototype.onCreate = function(){
-// 	oldHeaderOnCreate(this);
-// 	console.log('here');
-// }
 app.HeaderFW.prototype.panelChecker = function(){
-    // var header = this;
-    // if (header.$navPanel.hasClass('active')) {
-    //     if(header.$el.hasClass('is-pinned'))
-    //         header.$navPanel.css('height', viewport.height - header.$el.outerHeight() + 1);
-    //     else
-    //         header.$navPanel.css('height', viewport.height - (header.$el.position().top + header.$el.outerHeight()) + 1);
-    //         // header.$navPanel.css('height', viewport.height - (header.$el.get(0).getBoundingClientRect().top + header.$el.outerHeight()));
-    //         // header.$navPanel.css('height', viewport.height - (header.$el.get(0).getBoundingClientRect().top + header.$el.outerHeight()) + 1);
-    // }
 	return false;
 };
 
+
 window.addEventListener("load", function(e) {
-	console.log(app.components_active.headerFW[0]);
-	if(document.querySelector('#galleryMenu')){
-		let g = document.querySelector('#galleryMenu');
-		let h = app.components_active.headerFW[0];
-		let w = utils.getNodeFromString('<div class="container"></div>');
-		h.$navPanel.append(w);
-		w.append(h.$navPanel.find('ul.level_1').get(0));
-		w.append(g)
-	}
+	setTimeout(function(){
+		console.log(app.components_active.headerFW[0]);
+		if(document.querySelector('#galleryMenu')){
+			let g = document.querySelector('#galleryMenu');
+			let h = app.components_active.headerFW[0];
+			let w = utils.getNodeFromString('<div class="container"></div>');
+			h.$navPanel.append(w);
+			w.append(h.$navPanel.find('ul.level_1').get(0));
+			w.append(g)
+		}
+	},10)
 });
 
+document.querySelectorAll('.circlifultext').forEach((el)=>{
+	let texts = el.querySelector('textPath').innerHTML.split('\\n');
+	let newstr = "";
+	el.querySelector('textPath').innerHTML = "";
+	for(var i in texts){
+		el.querySelector('textPath').innerHTML += '<tspan dy="1.15em" x="0">'+texts[i].trim()+'</tspan>';
+	}
+	console.log(newstr);
+})
 
 document.querySelectorAll('.monitor-stick').forEach((el)=>{
 	const observer = new IntersectionObserver( 
