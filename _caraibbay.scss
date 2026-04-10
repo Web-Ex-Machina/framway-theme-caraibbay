@@ -634,7 +634,9 @@ h2,.h2{ margin-bottom: 1em;}
 		}
 
 		h#{$index}, .h#{$index}{
-			*+&{margin-top: body(line-height)*1em;}
+			*+&{margin-top: body(line-height)*1em;
+				.d-grid>&{margin-top: 0;}
+			}
 		}
 	}
 	&.img--rounded{
@@ -642,18 +644,29 @@ h2,.h2{ margin-bottom: 1em;}
 	}
 	&.media{
 		>figure{margin: 0;}
-		&.media--left img{float: left; margin: 1em 1.5em 1em 0;}
-		&.media--right img{float: right; margin: 1em 0 1em 1.5em;}
+		&.media--left img{float: left; margin: 0 1.5em 1em 0;}
+		&.media--right img{float: right; margin: 0 0 1em 1.5em;}
 	}
 
 	.rte p:has(img[style*="float"]){
 		text-align: center; margin: 0;
-		img[style*="float: left"]{margin: 1em 1.5em 1em 0;}
-		img[style*="float: right"]{margin: 1em 0 1em 1.5em;}
+		img[style*="float: left"]{margin: 0 1.5em 1em 0;}
+		img[style*="float: right"]{margin: 0 0 1em 1.5em;}
 	}
+	.d-grid>&{}
+}
+
+.content-image{
+	border-radius: var(--img-bdrs);
 }
 
 .content-gallery{
+	>ul{
+		gap: var(--gallery-gap) !important;
+	}
+	>ul>li{
+		border-radius: var(--img-bdrs);
+	}
 	&.masonry{
   	--griditem-minwidth: 220px; 
   	>ul{
@@ -694,7 +707,7 @@ h2,.h2{ margin-bottom: 1em;}
 .content-description-list:has(dwi){
 	dl{
 		@include grid($autocols: auto-fill, $gap:clamp(3em, 5vw, 80px));
-		--griditem-minwidth: 21ch;
+		--griditem-minwidth: 15ch;
 		dwi{
 			display: grid; 
 			grid-template-columns: 100%; 
@@ -709,14 +722,17 @@ h2,.h2{ margin-bottom: 1em;}
 			display: flex; 
 			align-items: center; 
 			justify-content: center;
-			background: linear-gradient(#ff9800c7 30%, #31CADD 70%);
+			// background: linear-gradient(#ff9800c7 30%, #31CADD 70%);
+	    // color: #fff;
 	    aspect-ratio: 1;
-	    padding: 1.25rem;
+	    padding: 0.75rem;
 	    border-radius: 500px;
-	    color: #fff;
+	    color: var(--primary);
+	    border: 1px solid hsla(from currentColor h s l / 0.2);
 	    > i[class*=fa], >svg{
-	    	font-size: clamp(3em, 5vw, 80px);
-	    	width: 1.5em;
+	    	font-size: clamp(2em,2.5vw,80px);
+	    	width: 1em;
+	    	aspect-ratio: 1;
 	    }
 		}
 		dd{font-size: 0.85em; text-align: center; max-width: 35ch}
@@ -753,6 +769,9 @@ h2,.h2{ margin-bottom: 1em;}
 	--bd-size: 100%;
 	--trs-duration: 0.5s;
 	--trs-function: ease-out;
+	&[data-preset=minimalist]{
+		.block-card__figure{border-radius: var(--img-bdrs);}
+	}
 	&[data-preset=thumbnail]{
 		box-shadow: 5px 10px 40px 5px rgba(0,0,0,0.4);
 		.block-card__wrapper{
@@ -794,6 +813,23 @@ h2,.h2{ margin-bottom: 1em;}
 			.block-card__figure{scale: 1.15;}
 			.block-card__title{opacity: 0; translate: 0 150%;}
 		}
+	}
+
+
+	&[data-preset="circliful"]{
+		overflow: visible;
+		.block-card__wrapper{overflow: visible;}
+		.block-card__figure{aspect-ratio: 1; border-radius: 100%; overflow: hidden;}
+		textPath{font-size: 2.5em;}
+	}
+}
+
+.block-card__container.isFlex:has(.block-card[data-preset="circliful"]){
+	gap: 6em;
+	.block-card{
+		flex-grow: 0;
+		flex-basis: 25%;
+		min-width: 200px;
 	}
 }
 
@@ -857,7 +893,7 @@ altcha-widget{ display: block;
 
 
 .booking-bar{
-	background: Hsl(from var(--primary) h calc(s + 0) calc(l - 5));
+	background: Hsl(from var(--primary) h calc(s + 0) calc(l - 0));
 	color: #fff;
 	position: sticky;
 	bottom: 2em;
