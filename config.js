@@ -1,12 +1,11 @@
 module.exports = {
 	'colors': {
-		"pink" :       "#ff96b4",
-		"yellow" :     "#f7eba2",
-		"orange" :     "#f39f64",
-		"aquamarine" : "#39b088",
+		"whirlpool": "#395c7a",
+		"aquacove" : "#53978a",
+		"sand"     : "#c0976b",
 	},
-	'primary': 'colors(aquamarine)',
-	'secondary': 'colors(pink)',
+	'primary': 'colors(aquacove)',
+	'secondary': 'colors(sand)',
 	'body': {
 		'font-color': 'colors(blacklight)',
 		'block-background': 'colors(white)',
@@ -23,7 +22,7 @@ module.exports = {
 		'border-color': 'input(border-color)',
 	},
 	'footer': {
-		'background': 'primary'
+		'background': 'colors(whirlpool)'
 	},
 	'input-as-btn': false,
 	'button-as-btn': false,

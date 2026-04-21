@@ -54,10 +54,10 @@ $backdrop-color: hsla(from var(--primary) h s l / 70%);
 	}
 }
 .btn-bg-secondary {
-	--btn-background: var(--secondary-darken); 
+	--btn-background: var(--secondary); 
 	--btn-border-color: var(--btn-background); 
 	&:hover,&:focus,&:active,&.active{
-		--btn-background: Hsl(from var(--secondary-darken) h s calc(l - 5));
+		--btn-background: Hsl(from var(--secondary) h s calc(l - 5));
 		--btn-border-color: var(--btn-background); 
 	}
 }
@@ -103,11 +103,11 @@ $backdrop-color: hsla(from var(--primary) h s l / 70%);
 	}
 }
 .btn-bd-secondary {
-	--btn-border-color: var(--secondary-darken); 
-	--btn-font-color: var(--secondary-darken); 
+	--btn-border-color: var(--secondary); 
+	--btn-font-color: var(--secondary); 
 	&:hover,&:focus,&:active,&.active {
-		--btn-border-color: var(--secondary-darken);
-		--btn-background: var(--secondary-darken); 
+		--btn-border-color: var(--secondary);
+		--btn-background: var(--secondary); 
 	}
 }
 .btn-bd-success   {
@@ -940,9 +940,9 @@ body{
   & .dp:before{
     @include linear-grad(
       (
-        (color(pink),10%,0.6),
-        (color(orange),64%,0.5),
-        (color(aquamarine),100%,0.5)
+        (color(sand),10%,0.6),
+        (color(yellow),64%,0.5),
+        (color(aquacove),100%,0.5)
       ),
     );
   }
