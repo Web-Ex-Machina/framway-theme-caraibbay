@@ -178,7 +178,10 @@ body{font-family: 'muli',sans-serif;}
 .mod_article{ position: relative;
 	&#intro{--mod_article-padding-y:0;--mod_article-padding-x:0; --mod_article-margin-bottom: 0; display: contents;}
 
-	&:has(.mod_newsreader:first-child .layout_full>.heroFW:first-child),
+	&:has(.mod_newsreader:first-child .layout_full>.heroFW:first-child){
+		--mod_article-padding-x: 0;
+		padding-top: 0;
+	}
 	&:has(.heroFW:first-child:last-child):not([class*=p-]):not([class*=m-]){
 		--mod_article-padding-y: 0;
 		--mod_article-padding-x: 0;
@@ -208,9 +211,14 @@ body.slides{
 		align-content: center;
 		z-index: 1;
 		&:not([class*=m-bottom]){margin-bottom: 0;}
-		&:nth-child(2n-1){background: change-color($primary,$lightness:95%);}
+		&:nth-child(2n-1){
+			background: change-color($primary,$lightness:95%);
+			background: Hsl(from var(--primary) h s calc(l + 50));
+		}
 		&.slide--fullheight,
 		&:not(.slide--fit){min-height: calc(100vh - var(--booking-bar-height,0px));}
+
+		&:first-child:has(.heroFW:first-child:last-child){z-index: 2;}
 	}
 }
 
@@ -447,7 +455,10 @@ body.slides{
 
 .headerFW{
 	background: transparent;
-	.logo-pinned{display: none;}
+	.logo-pinned{display: none;
+		filter: drop-shadow(0px 1000px 0px var(--primary));
+		translate: 0 -1000px;
+	}
 	&.is-open,
 	&.is-pinned{
 		.logo-pinned{display: block;}
@@ -466,6 +477,7 @@ body.slides{
 .headerFW__logo__wrapper{grid-column: 2; justify-self: center;}
 .headerFW__nav__wrapper{background: transparent; grid-column: 3;}
 .headerFW__lang{grid-column: 1; justify-content: start}
+.headerFW__postnav{padding: 0.5em;}
 
 .headerFW__nav__panel{
 	position: fixed;
@@ -548,7 +560,11 @@ body.slides{
 	}
 }
 .footer__richcontent{
-  background: Hsl(from var(--primary) h s calc(l - 10)); color: hsl(from var(--primary) h s calc(l + 50)); padding: 2em;
+  // background: Hsl(from var(--primary) h s calc(l - 10)); 
+	background: inherit;
+  color: hsl(from var(--primary) h s calc(l + 50)); 
+  color: #fff;
+  padding: 2em;
 	>.wrapper{
 		display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 2em;
 		align-items: end;
@@ -595,7 +611,7 @@ body.slides{
 // TITLES
 @for $index from 1 through 4{
   h#{$index},
-  .h#{$index}{font-family: 'cardo',serif; font-weight: 300; font-variant: small-caps;}
+  .h#{$index}{font-family: 'Josefin Sans',serif; font-weight: 300; font-variant: small-caps;}
 }
 h1,.h1{text-transform: none; font-size: 3em; line-height: 1; margin-bottom: 1em;}
 h2,.h2{ margin-bottom: 1em;}
@@ -708,6 +724,7 @@ h2,.h2{ margin-bottom: 1em;}
 .content-description-list:has(dwi){
 	dl{
 		@include grid($autocols: auto-fill, $gap:clamp(3em, 5vw, 80px));
+		row-gap: 2em;
 		--griditem-minwidth: 15ch;
 		dwi{
 			display: grid; 
@@ -731,7 +748,7 @@ h2,.h2{ margin-bottom: 1em;}
 	    color: var(--primary);
 	    border: 1px solid hsla(from currentColor h s l / 0.2);
 	    > i[class*=fa], >svg{
-	    	font-size: clamp(2em,2.5vw,80px);
+	    	font-size: clamp(2em,2.25vw,80px);
 	    	width: 1em;
 	    	aspect-ratio: 1;
 	    }
@@ -918,7 +935,7 @@ altcha-widget{ display: block;
 	&.is-pinned{
 		max-width: 100%;
     // opacity: 0.65;
-		background: Hsl(from var(--primary) h calc(s - 10) calc(l + 5));
+		background: Hsl(from var(--primary) h calc(s - 0) calc(l + 5));
     &:hover, &:has(*:focus){
 			background: Hsl(from var(--primary) h calc(s + 0) calc(l - 5));
     	// opacity: 1;
