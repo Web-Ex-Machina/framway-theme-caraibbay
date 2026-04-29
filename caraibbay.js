@@ -17,7 +17,7 @@ app.HeaderFW.prototype.panelChecker = function(){
 
 window.addEventListener("load", function(e) {
 	setTimeout(function(){
-		console.log(app.components_active.headerFW[0]);
+		// console.log(app.components_active.headerFW[0]);
 		if(document.querySelector('#galleryMenu')){
 			let g = document.querySelector('#galleryMenu');
 			let h = app.components_active.headerFW[0];
@@ -26,6 +26,17 @@ window.addEventListener("load", function(e) {
 			w.append(h.$navPanel.find('ul.level_1').get(0));
 			w.append(g)
 		}
+
+		$('body').on('click', '.sliderFW__rail.multiple .sliderFW__item:not(.active)', function(e) {
+			let slider = $(this).closest('.sliderFW').sliderFW('get');
+			let iActive = slider.content.items.toArray().indexOf(slider.$el.find('.sliderFW__item.active').get(0));
+			let iTarget = slider.content.items.toArray().indexOf(this);
+			// console.log(slider,iActive,iTarget);
+			if (iActive > iTarget)
+				slider.goToPrev();
+			else if (iActive < iTarget)
+				slider.goToNext()
+		});
 	},10)
 });
 
