@@ -655,6 +655,11 @@ h2,.h2{ margin-bottom: 1em;}
 				.d-grid>&{margin-top: 0;}
 			}
 		}
+		&:is([class*=bg-],.block-std){
+			h#{$index}, .h#{$index}{
+				*+&{margin-top: 0;}
+			}
+		}
 	}
 	&.img--rounded{
 		img{border-radius: 100%; overflow: hidden; shape-outside: margin-box; border-bottom: 8px solid var(--primary); aspect-ratio: 1; object-fit: cover;}
@@ -722,10 +727,10 @@ h2,.h2{ margin-bottom: 1em;}
 
 
 .content-description-list:has(dwi){
-	dl{
-		@include grid($autocols: auto-fill, $gap:clamp(3em, 5vw, 80px));
-		row-gap: 2em;
-		--griditem-minwidth: 15ch;
+	@include grid($autocols: auto-fill, $gap:clamp(3em, 5vw, 80px)); row-gap: 2em;
+	--griditem-minwidth: 15ch;
+	&.mode--flex{display: flex;flex-wrap: wrap; justify-content: center;}
+	dl{ display: contents;
 		dwi{
 			display: grid; 
 			grid-template-columns: 100%; 
