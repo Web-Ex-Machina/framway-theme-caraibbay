@@ -1,11 +1,11 @@
 :root{
   --mod_article-padding-y: #{$spacing*2};
   --mod_article-padding-x: #{$spacing};
-  --mod_article-margin-bottom: #{$spacing*2};
+  --mod_article-margin-bottom: 0;
   @include media-max(xs){
     --mod_article-padding-y: #{$spacing};
   	--mod_article-padding-x: #{$spacing/2};
-    --mod_article-margin-bottom: #{$spacing};
+    --mod_article-margin-bottom: 0;
   }
   --gallery-gap: 5px;
   --img-bdrs: 0px;
@@ -148,6 +148,7 @@ body{font-family: 'muli',sans-serif;}
 #wrapper{
 	display: grid;
 	grid-template-columns: 100%;
+	grid-template-rows: 1fr auto;
 
 	&:after{
 		content: "";
