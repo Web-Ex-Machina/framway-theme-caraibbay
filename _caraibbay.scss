@@ -216,7 +216,7 @@ body.slides{
 			background: Hsl(from var(--primary) h s calc(l + 50));
 		}
 		&.slide--fullheight,
-		&:not(.slide--fit){min-height: calc(100vh - var(--booking-bar-height,0px));}
+		&:not(.slide--fit){min-height: calc(80vh - var(--booking-bar-height,0px));}
 
 		&:first-child:has(.heroFW:first-child:last-child){z-index: 2;}
 	}
